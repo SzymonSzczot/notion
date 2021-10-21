@@ -1,0 +1,29 @@
+# Get page
+GET https://api.notion.com/v1/pages/4003a7f7873f4107b9cb2f9fcf0df3f0
+Authorization: Bearer {{bearer}}
+Notion-Version: 2021-05-13
+
+###
+# Create page
+POST https://api.notion.com/v1/pages
+Authorization: Bearer {{bearer}}
+Notion-Version: 2021-05-13
+Content-Type: application/json
+
+{
+  "parent": {
+    "page_id": "4003a7f7-873f-4107-b9cb-2f9fcf0df3f0"
+  },
+    "properties": {
+        "title": {
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "New Media Article"
+              }
+            }
+          ]
+        }
+    }
+}
