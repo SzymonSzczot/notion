@@ -1,0 +1,32 @@
+POST http://localhost:8000/notion/pages
+Content-Type: application/json
+
+{
+    "name": "test",
+    "parent": "4003a7f7-873f-4107-b9cb-2f9fcf0df3f0",
+    "properties": {
+      "Notatki": {
+      "id": "w]xf",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "Notatka",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "Notatka",
+          "href": null
+        }
+      ]
+    }
+}
+  }

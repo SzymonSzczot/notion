@@ -19,13 +19,24 @@ class NotionService:
         url = f"{self.notion.service_url}/v1/pages/{page.external_id}"
         return requests.get(url, headers=self.get_auth_headers())
 
-    def create_page(self, parent, properties):
+    def create_page(self, parent_id, title):
         url = f"{self.notion.service_url}/v1/pages"
         payload = {
             "parent": {
                 "type": "page_id",
-                "page_id": str(parent["external_id"])
+                "page_id": parent_id
             },
-            "properties": properties
+            "properties": {
+                "title": {
+                    "title": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "content": title
+                            }
+                        }
+                    ]
+                }
+            }
         }
         return requests.post(url, json=payload, headers=self.get_auth_headers())

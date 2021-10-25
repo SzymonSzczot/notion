@@ -9,6 +9,7 @@ from notion.models import Notion
 from notion.models import Page
 from notion.serializers.create import CreatePageSerializer
 from notion.serializers.page import PageSerializer
+from notion.serializers.update import UpdatePageSerializer
 
 
 class PageViewSet(viewsets.ModelViewSet):
@@ -33,7 +34,10 @@ class PageViewSet(viewsets.ModelViewSet):
         return Response(json.loads(response.content))
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
+        serializer = CreatePageSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({"message": "created"}, status=status.HTTP_201_CREATED)
+
+    def update(self, request, *args, **kwargs):
+        serializer = UpdatePageSerializer(data=request.data)
