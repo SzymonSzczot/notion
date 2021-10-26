@@ -1,8 +1,7 @@
-import json
-
 import requests
 
 from notion.models import Notion
+from notion.models import Page
 
 
 class NotionService:
@@ -19,24 +18,14 @@ class NotionService:
         url = f"{self.notion.service_url}/v1/pages/{page.external_id}"
         return requests.get(url, headers=self.get_auth_headers())
 
-    def create_page(self, parent_id, title):
+    def create_page(self, parent: Page, page: Page):
         url = f"{self.notion.service_url}/v1/pages"
         payload = {
             "parent": {
                 "type": "page_id",
-                "page_id": parent_id
+                "page_id": parent.external_id
             },
-            "properties": {
-                "title": {
-                    "title": [
-                        {
-                            "type": "text",
-                            "text": {
-                                "content": title
-                            }
-                        }
-                    ]
-                }
-            }
+            "properties": page.get_properties()
+
         }
         return requests.post(url, json=payload, headers=self.get_auth_headers())
