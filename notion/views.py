@@ -13,7 +13,6 @@ from notion.serializers.update import UpdatePageSerializer
 
 
 class PageViewSet(viewsets.ModelViewSet):
-
     lookup_field = "external_id"
     queryset = Page.objects.all()
 
